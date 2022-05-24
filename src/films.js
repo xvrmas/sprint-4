@@ -16,9 +16,8 @@ function getMoviesFromDirector(array, director) {
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
-  let score = array.filter(element => element.director == 'Quentin Tarantino');
-  let scoreDirector = score.map(element => element.score);
-  let sumScore = scoreDirector.reduce((total, current) => (total + current));
+  let scoreDirector = array.filter(element => element.director == 'Quentin Tarantino');
+  let sumScore = scoreDirector.reduce((acc, item) => (acc + item.score),0);
   let result = parseFloat((sumScore / scoreDirector.length).toFixed(2));
   console.log("EXERCICE 3 ->", result);
   return result;
@@ -61,11 +60,10 @@ function orderByYear(array) {
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array) {
   let scoreFilm = array.filter(element => element.genre == `Drama`);
-  let score = scoreFilm.map(element2 => element2.score)
-  let preResult = score.reduce((total, current) => (total + current));
-  let result = parseFloat((preResult / score.length).toFixed(2));
-  
+  let preResult = scoreFilm.reduce((acc, item)=> (acc + item.score),0);
+  let result = parseFloat((preResult / scoreFilm.length).toFixed(2));
   console.log("EXERCICE 6 ->", result);
+
   return result;
 
 }
