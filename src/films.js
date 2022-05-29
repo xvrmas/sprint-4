@@ -78,9 +78,11 @@ function hoursToMinutes(array) {
     .map((item, i) => item + Number(minuts[i]))
     .map((item) => item.toString());
 
-  let result = array.map()
-    .map((element) => element.duration = horesMinuts);
+  // let result = array.map()
+  //   .map((element) => element.duration = horesMinuts);
   console.log("EXERCICE 7 ->", result);
+  console.log(`Hores sumades a minuts`,horesMinuts)
+
   return (result);
 }
 
