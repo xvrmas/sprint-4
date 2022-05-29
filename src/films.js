@@ -59,26 +59,29 @@ function orderByYear(array) {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array) {
-   let scoreFilm = array.filter(element => element.genre == `Drama`);
-   let preResult = scoreFilm.reduce((acc, item) => (acc + item.score), 0);
-   let result = parseFloat((preResult / scoreFilm.length).toFixed(2));
-   console.log("EXERCICE 6 ->", result);
-   return (result);
+  let scoreFilm = array.filter(element => element.genre == `Drama`);
+  let preResult = scoreFilm.reduce((acc, item) => (acc + item.score), 0);
+  let result = parseFloat((preResult / scoreFilm.length).toFixed(2));
+  console.log("EXERCICE 6 ->", result);
+  return (result);
 }
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
-var regex = (/(\d+)/g);
+  let regex = (/(\d+)/g);
   let mapaDuration = array.map(element => element.duration.match(regex));
   let minuts = mapaDuration.map((element) => {
     return element[1] == undefined ? `0` : element[1]
   });
-  let hores = mapaDuration.map(element => (element[0] * 60)) 
-  let result = hores.map(Number)
+  let hores = mapaDuration.map(element => (element[0] * 60))
+  let horesMinuts = hores.map(Number)
     .map((item, i) => item + Number(minuts[i]))
-    // .map( (item) => item.toString() );
-    console.log("EXERCICE 7 ->", result);
-    return (result);
+    .map((item) => item.toString());
+
+  let result = array.map()
+    .map((element) => element.duration = horesMinuts);
+  console.log("EXERCICE 7 ->", result);
+  return (result);
 }
 
 // Exercise 8: Get the best film of a year
