@@ -10,14 +10,14 @@ function getAllDirectors(array) {
 function getMoviesFromDirector(array, director) {
   let result = array.filter(element => element.director == `Quentin Tarantino`);
   console.log("EXERCICE 2 ->", result);
-  console.log(result);
+  // moviesAverageOfDirector(result);
   return result;
 }
 
 // Exercise 3: Calculate the average of the films of a given director.
-function moviesAverageOfDirector(array, director) {
+function moviesAverageOfDirector(array) {
   let scoreDirector = array.filter(element => element.director == 'Quentin Tarantino');
-  let sumScore = scoreDirector.reduce((acc, item) => (acc + item.score),0);
+  let sumScore = scoreDirector.reduce((acc, item) => (acc + item.score), 0);
   let result = parseFloat((sumScore / scoreDirector.length).toFixed(2));
   console.log("EXERCICE 3 ->", result);
   return result;
@@ -59,23 +59,36 @@ function orderByYear(array) {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array) {
-  let scoreFilm = array.filter(element => element.genre == `Drama`);
-  let preResult = scoreFilm.reduce((acc, item)=> (acc + item.score),0);
-  let result = parseFloat((preResult / scoreFilm.length).toFixed(2));
-  console.log("EXERCICE 6 ->", result);
-
-  return result;
-
+   let scoreFilm = array.filter(element => element.genre == `Drama`);
+   let preResult = scoreFilm.reduce((acc, item) => (acc + item.score), 0);
+   let result = parseFloat((preResult / scoreFilm.length).toFixed(2));
+   console.log("EXERCICE 6 ->", result);
+   return (result);
 }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
-
+function hoursToMinutes(array) {
+var regex = (/(\d+)/g);
+  let mapaDuration = array.map(element => element.duration.match(regex));
+  let minuts = mapaDuration.map((element) => {
+    return element[1] == undefined ? `0` : element[1]
+  });
+  let hores = mapaDuration.map(element => (element[0] * 60)) 
+  let result = hores.map(Number)
+    .map((item, i) => item + Number(minuts[i]))
+    // .map( (item) => item.toString() );
+    console.log("EXERCICE 7 ->", result);
+    return (result);
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-
+function bestFilmOfYear(array) {
+  let yearFilm = array.filter(element => element.year == `1957`);
+  let mapyearFilm = yearFilm.map(element => element.score)
+  let max = mapyearFilm.reduce((a, b) => Math.max(a, b));
+  let result = yearFilm.filter(element => element.score == max);
+  console.log("EXERCICE 7 ->", result);
+  return result;
 }
 
 
