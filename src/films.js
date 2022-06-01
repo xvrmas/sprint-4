@@ -10,7 +10,6 @@ function getAllDirectors(array) {
 function getMoviesFromDirector(array, director) {
   let result = array.filter(element => element.director == `Quentin Tarantino`);
   console.log("EXERCICE 2 ->", result);
-  // moviesAverageOfDirector(result);
   return result;
 }
 
