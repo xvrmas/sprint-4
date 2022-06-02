@@ -62,26 +62,22 @@ function moviesAverageByCategory(array) {
   let preResult = scoreFilm.reduce((acc, item) => (acc + item.score), 0);
   let result = parseFloat((preResult / scoreFilm.length).toFixed(2));
   console.log("EXERCICE 6 ->", result);
-  return (result);
+  return result;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
-  let regex = (/(\d+)/g);
-  let mapaDuration = array.map(element => element.duration.match(regex));
-  let minuts = mapaDuration.map((element) => {
-    return element[1] == undefined ? `0` : element[1]
-  });
-  let hores = mapaDuration.map(element => (element[0] * 60))
-  let horesMinuts = hores.map(Number)
-    .map((item, i) => item + Number(minuts[i]))
-  let result = Object.assign(array)
+  let result = [];
   let i = 0;
+  result = Object.assign(array);
+  let mapaDuration = array.map((element) => element.duration.match(/(\d+)/g));
+  let minuts = mapaDuration.map((element) => element[1] == undefined ? `0` : element[1]);
+  let hores = mapaDuration.map(element => (element[0] * 60));
+  let horesMinuts = hores.map((item, i) => item + parseInt(minuts[i]));
   result.forEach(element => element.duration = horesMinuts[i++]);
   console.log("EXERCICE 7 ->", result);
   return (result);
 }
-
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear(array) {
   let yearFilm = array.filter(element => element.year == `1957`);
