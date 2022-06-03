@@ -1,6 +1,9 @@
 function moviesAverage(data) {
-  let preResult = data.reduce((acc, item) => (acc + item.score), 0);
-  let result = parseFloat((preResult / data.length).toFixed(2));
+  let score = [];
+  data.filter(element => { if (element.score != ``) { score.push(element.score) } });
+  let sumScore = score.reduce((acc, item) => (acc + item), 0);
+  let result = parseFloat((sumScore / score.length).toFixed(2));
+  console.log("resultat moviesAverage() >>>", result);
   return result;
 }
 // Exercise 1: Get the array of all directors.
@@ -18,7 +21,7 @@ function getMoviesFromDirector(array, director) {
 }
 
 // Exercise 3: Calculate the average of the films of a given director.
-function moviesAverageOfDirector(array,director) {
+function moviesAverageOfDirector(array, director) {
   let directorScore = array.filter(element => element.director == director);
   let result = moviesAverage(directorScore)
   console.log("EXERCICE 3 ->", result);
@@ -32,7 +35,6 @@ function orderAlphabetically(array) {
   let sortMovies = moviesArr.sort((a, b) => (a < b ? -1 : 1));
   let result = sortMovies.slice(0, 20)
   console.log("EXERCICE 4 ->", result);
-  console.log(result.length)
   return result;
 }
 
@@ -61,8 +63,9 @@ function orderByYear(array) {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array, category) {
-  let genre = array.filter(element => element.genre == category);
-  let result = moviesAverage(genre)
+  let genreScore = array.filter(element => element.genre == category);
+  let result = moviesAverage(genreScore)
+  console.log(genreScore)
   console.log("EXERCICE 6 ->", result);
   return result;
 }
@@ -70,8 +73,7 @@ function moviesAverageByCategory(array, category) {
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
   let i = 0;
-  let arr = [];
-  arr = Object.assign(array);
+  let arr = Object.assign(array);
   let mapaDuration1 = arr.map((element) => element.duration);
   let mapaDuration = mapaDuration1.map(item => item.match(/(\d+)/g));
   let minuts = mapaDuration.map((element) => element[1] == undefined ? `0` : element[1]);
@@ -91,8 +93,7 @@ function bestFilmOfYear(array, year) {
   return result;
 }
 
-// console.log(moviesAverageByCategory(moviesAverageByCategory([ { score: 5, genre: ['Action'], }, { score: '',  genre: ['Action'], } ], 'Action')))
-// console.log(typeof(hoursToMinutes(movies)[0].duration))
+
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
@@ -108,3 +109,5 @@ if (typeof module !== 'undefined') {
     bestFilmOfYear,
   };
 }
+// console.log(moviesAverageByCategory(moviesAverageByCategory([ { score: 5, genre: ['Action'], }, { score: '',  genre: ['Action'], } ], 'Action')))
+// console.log(typeof(hoursToMinutes(movies)[0].duration))
