@@ -1,5 +1,5 @@
 
-//sangre, sudor y lagrimas
+
 function moviesAverage(data) {
   let score = [];
   data.filter(element => { if (element.score != ``) { score.push(element.score) } });
